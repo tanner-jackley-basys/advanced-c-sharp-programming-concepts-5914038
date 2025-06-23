@@ -5,10 +5,15 @@ namespace BasicInterfaces
 {
     // TODO: Define an IStorable interface that provides the ability to load and
     // save the information for an object
-
+    interface IStorable
+    {
+        void Save();
+        void Load();
+        bool NeedsSave { get; set; }
+    }
 
     // TODO: Implement IStorable on the Document class
-    class Document
+    class Document : IStorable
     {
         private string name;
 
@@ -19,15 +24,29 @@ namespace BasicInterfaces
         }
 
         // TODO: Implement the IStorable interface methods and properties
+        public void Save()
+        {
+            Console.WriteLine("Saving the Document");
+        }
+
+        public void Load()
+        {
+            Console.WriteLine("Loading the Document");
+        }
+
+        public bool NeedsSave { get; set; }
     }
 
     class Program
     {
-        static void Main(string[] args) {
+        static void Main(string[] args)
+        {
             Document d = new Document("Test Document");
 
             // TODO: Exercise the IStorable interface
-
+            d.Load();
+            d.Save();
+            d.NeedsSave = false;
         }
     }
 }
